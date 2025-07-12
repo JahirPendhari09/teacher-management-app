@@ -6,8 +6,7 @@ A modern, responsive, and accessible **Teacher Management UI** built with **Next
 
 ##  Live Demo
 
-[View Live Application]()
-
+[View Live Application](https://teacher-management-app.netlify.app/)
 
 
 ## Tech Stack
@@ -26,7 +25,7 @@ A modern, responsive, and accessible **Teacher Management UI** built with **Next
    Move inside the application: ``` cd teacher-management-app  ```
    Install the dependencies:   ``` npm install ``` <br/>
    Start the development server:   ``` npm run start ``` <br/>
-   Open your browser and visit:   ``` http://localhost:3000 ``` <br/>
+   Open your browser and visit:   ``` http://localhost:5173 ``` <br/>
    
 
 ##  Features
@@ -37,8 +36,8 @@ A modern, responsive, and accessible **Teacher Management UI** built with **Next
 -  Fully **responsive design** (Mobile, Tablet, Desktop)
 -  **Form validation**, error states, cancel/save workflows
 -  Modern, clean typography and spacing
--  Accessible (WCAG-focused labels and interactions)
--  Micro-interactions and smooth transitions
+
+
 
 # Credits <br/>
    This project was developed by ```Jahir Pendhari```.
