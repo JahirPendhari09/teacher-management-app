@@ -3,7 +3,7 @@ import type { ThemeContextType, ThemeProviderProps } from "../types";
 
 export const ThemeContext = createContext<ThemeContextType>({
   isSideBarVisible: false,
-  setIsSideBarVisible: () => {},
+  setIsSideBarVisible: () => { },
 });
 
 const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {

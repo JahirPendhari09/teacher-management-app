@@ -37,19 +37,19 @@ const SideBarContent: React.FC<SideBarContentProps> = ({
   topNaviLinks,
 }) => {
   return (
-      <nav className="flex-1 px-4 py-2 space-y-2 text-white">
-        {topNaviLinks.map(({ id, icon: Icon, label, active }) => (
-          <div
-            key={id}
-            onClick={() => handleClick(id)}
-            className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg 
-              ${ active ? "bg-blue-500" : "hover:bg-blue-500" }`}
-          >
-            <Icon className="w-6 h-6" />
-            <span className="ml-3 font-medium">{label}</span>
-          </div>
-        ))}
-      </nav>
+    <nav className="flex-1 px-4 py-2 space-y-2 text-white">
+      {topNaviLinks.map(({ id, icon: Icon, label, active }) => (
+        <div
+          key={id}
+          onClick={() => handleClick(id)}
+          className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg 
+              ${active ? "bg-blue-500" : "hover:bg-blue-500"}`}
+        >
+          <Icon className="w-6 h-6" />
+          <span className="ml-3 font-medium">{label}</span>
+        </div>
+      ))}
+    </nav>
   );
 };
 
@@ -86,16 +86,16 @@ const SideBar: React.FC = () => {
   return (
     <div className="flex flex-col w-full md:w-64 bg-white md:h-screen border-r relative">
       {!isMobile ? (
-          <div
-            className={`absolute md:static bottom-0 w-full transition-all h-full bg-black/10 md:bg-transparent overflow-hidden`}
-          >
-            <div className="bg-slate-900 w-full h-full flex flex-col">
-              <SideBarContent
-                handleClick={handleClick}
-                topNaviLinks={topNaviLinks}
-              />
-            </div>
+        <div
+          className={`absolute md:static bottom-0 w-full transition-all h-full bg-black/10 md:bg-transparent overflow-hidden`}
+        >
+          <div className="bg-slate-900 w-full h-full flex flex-col">
+            <SideBarContent
+              handleClick={handleClick}
+              topNaviLinks={topNaviLinks}
+            />
           </div>
+        </div>
       ) : (
         <>
           <div className="flex justify-between md:justify-around w-full px-4 items-center h-16">
