@@ -1,15 +1,14 @@
-# 🎓 Teacher Management Interface
+# Teacher Management Interface
 
 A modern, responsive, and accessible **Teacher Management UI** built with **Next.js**, **TypeScript**, and **Tailwind CSS**. This project is a complete redesign based on a legacy interface screenshot, built with clean, modern UI/UX principles and best practices in mind.
 
----
+
 
 ##  Live Demo
 
 [View Live Application]()
 
 
----
 
 ## Tech Stack
   - Javascrit
@@ -41,7 +40,6 @@ A modern, responsive, and accessible **Teacher Management UI** built with **Next
 -  Accessible (WCAG-focused labels and interactions)
 -  Micro-interactions and smooth transitions
 
- 
-   # Credits <br/>
+# Credits <br/>
    This project was developed by ```Jahir Pendhari```.
   
