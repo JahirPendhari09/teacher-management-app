@@ -5,7 +5,7 @@ import { CgProfile } from "react-icons/cg";
 import { IoMdSettings } from "react-icons/io";
 import { FaPen, FaPlus, FaTrash } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
-import type { EditableSectionProps, FieldType, SingleRowProps } from "../types";
+import { type Qualification, type EditableSectionProps, type FieldType, type SingleRowProps } from "../types";
 import { group_qualification, personalDetails, private_qualification } from "../static";
 import { EditableTableSection } from "./QualificationTable";
 import WeeklyScheduler from "./WeeklyScheduler";
@@ -13,8 +13,8 @@ import WeeklyScheduler from "./WeeklyScheduler";
 
 const Dashboard = () => {
     const { isSideBarVisible } = useContext(ThemeContext);
-    const [privateQualifications, setPrivateQualifications] = useState(private_qualification);
-    const [groupQualifications, setGroupQualifications] = useState(group_qualification);
+    const [privateQualifications, setPrivateQualifications] = useState<Qualification[]>(private_qualification);
+    const [groupQualifications, setGroupQualifications] = useState<Qualification[]>(group_qualification);
 
     return (
         <Layout>
@@ -37,6 +37,7 @@ const Dashboard = () => {
                 <div className="w-full flex flex-col md:flex-row lg:flex-row gap-4 lg:gap-10 ">
                     <div className="w-full flex flex-col gap-4">
                         <EditableSection
+                            sectionKey="emails"
                             title="Details"
                             fields={[
                                 { key: "name", label: "Name", value: personalDetails.name },
@@ -78,7 +79,6 @@ const Dashboard = () => {
                         <EditableSection
                             title="Address"
                             sectionKey="address"
-                            isArray
                             fields={personalDetails.address.home.map((line, idx) => ({
                                 key: `line_${idx}`,
                                 label: `Line ${idx + 1}`,
@@ -95,7 +95,7 @@ const Dashboard = () => {
 };
 
 
-const EditableSection = ({ title, sectionKey, fields, isArray = false }: EditableSectionProps) => {
+const EditableSection = ({ title, sectionKey, fields }: EditableSectionProps) => {
     const [isEditing, setIsEditing] = useState(false);
     const [data, setData] = useState<FieldType[]>(fields);
     const [originalData, setOriginalData] = useState<FieldType[]>(fields);
@@ -135,26 +135,30 @@ const EditableSection = ({ title, sectionKey, fields, isArray = false }: Editabl
 
         const updatedData = data.map((row) => ({
             ...row,
-            key: row.label.trim().toLowerCase().replace(/\s+/g, "_")
+            key: row.label.trim().toLowerCase().replace(/\s+/g, "_"),
         }));
 
         setOriginalData(updatedData);
         setData(updatedData);
         setIsEditing(false);
 
-        if (isArray) {
-            personalDetails[sectionKey] = {
-                home: updatedData.map((d) => d.value)
-            };
-        } else {
+        // Correctly assign based on sectionKey
+        if (sectionKey === "address") {
+            personalDetails.address.home = updatedData.map((d) => d.value);
+        } else if (sectionKey === "emails" || sectionKey === "phone") {
             const newSection: Record<string, string> = {};
             updatedData.forEach((d) => {
                 newSection[d.key] = d.value;
             });
             personalDetails[sectionKey] = newSection;
+        } else if (sectionKey === "name" || sectionKey === "role" || sectionKey === "date_of_birth") {
+            // Assign string directly (only one field expected)
+            if (updatedData.length > 0) {
+                personalDetails[sectionKey] = updatedData[0].value;
+            }
         }
-
     };
+
 
     const handleCancel = () => {
         for (const row of data) {
@@ -206,7 +210,7 @@ const EditableSection = ({ title, sectionKey, fields, isArray = false }: Editabl
 const SingleRow = ({ title, value, isEditing, onChange, onLabelChange, onRemove }: SingleRowProps) => {
     return (
         <>
-            <hr  className="text-neutral-200"/>
+            <hr className="text-neutral-200" />
             <div className="flex w-full gap-4 items-start">
                 <div className="flex justify-end w-1/4 font-bold">
                     {isEditing ? (

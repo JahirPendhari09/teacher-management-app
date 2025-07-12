@@ -1,4 +1,3 @@
-import type { personalDetails } from "./static";
 
 export type SingleRowProps = {
   title: string;
@@ -9,9 +8,14 @@ export type SingleRowProps = {
   onRemove: () => void;
 };
 
+type ScalarKey = "name" | "role" | "date_of_birth";
+type ObjectKey = "emails" | "phone";
+type ArrayKey = "address";
+
+
 export type EditableSectionProps = {
   title: string;
-  sectionKey?: keyof typeof personalDetails;
+  sectionKey: ScalarKey | ObjectKey | ArrayKey;
   isArray?: boolean;
   fields: FieldType[];
 };

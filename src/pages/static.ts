@@ -1,17 +1,24 @@
-export const personalDetails = {
-    name: "Jahir Pendhari",
-    role: "Teacher",
-    date_of_birth: "",
-    emails: {
-        work: "johndoe@gmail.com"
-    },
-    phone: {
-        home: "+91 8668953367"
-    },
-    address: {
-        home: ["56 Odardo Di santi Cir", "New York city", "Canada"]
-    }
-};
+export const personalDetails: {
+  name: string;
+  role: string;
+  date_of_birth: string;
+  emails: { [key: string]: string };
+  phone: { [key: string]: string };
+  address: { home: string[] };
+} = {
+  name: 'Jahir Pendhari',
+  role: 'Teacher',
+  date_of_birth: '',
+  emails: { work: 'johndoe@gmail.com' },
+  phone: { home: '+91 8668953367' },
+  address: {
+    home: [
+      "56 Odardo Di santi Cir",
+      "New York city",
+      "Canada"
+    ]
+  }
+}
 
 export const private_qualification = [
     { name: "Vocal Contemparory", rate: "$28.00" },

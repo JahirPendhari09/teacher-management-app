@@ -1,4 +1,4 @@
-import { ReactNode, Dispatch, SetStateAction } from "react";
+import type { ReactNode, Dispatch, SetStateAction } from "react";
 
 export interface ThemeContextType {
   isSideBarVisible: boolean;
